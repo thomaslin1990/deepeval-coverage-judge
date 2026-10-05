@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepeval-coverage-judge"
+version = "0.1.0"
+description = "CSV information-coverage pipeline using embedding retrieval and DeepEval GEval"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "deepeval>=4.0",
+  "pandas>=2.0",
+  "python-dotenv>=1.0",
+  "sentence-transformers>=3.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+coverage-judge = "coverage_judge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
