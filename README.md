@@ -32,6 +32,7 @@ deepeval-coverage-judge/
 │   ├── pipeline.py
 │   └── retriever.py
 ├── tests/test_pipeline.py
+├── run_comparison.sh
 ├── .env.example
 └── pyproject.toml
 ```
@@ -55,6 +56,26 @@ export OPENAI_API_KEY="your-api-key"
 ```
 
 ## Run the example
+
+The simplest way is the helper script, which runs the example files in `data/`
+and writes `judge_results.csv`:
+
+```bash
+./run_comparison.sh
+```
+
+It calls `.venv/bin/python -m coverage_judge.cli` with `PYTHONPATH=src`, so the
+virtual environment does not need to be activated. Any extra flags are passed
+through to the CLI:
+
+```bash
+./run_comparison.sh --top-k 5 --judge-threshold 0.75
+```
+
+To change the input or output files, edit the paths in `run_comparison.sh`.
+
+Equivalently, with the virtual environment activated, use the installed
+`coverage-judge` command:
 
 ```bash
 coverage-judge \
